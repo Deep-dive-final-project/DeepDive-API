@@ -1,7 +1,7 @@
-package org.deepdive.apiserver.exception;
+package org.deepdive.apiserver.common.exception;
 
 import lombok.extern.slf4j.Slf4j;
-import org.deepdive.apiserver.dto.global.ResponseDto;
+import org.deepdive.apiserver.common.dto.ResponseDto;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;

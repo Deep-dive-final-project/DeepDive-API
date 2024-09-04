@@ -1,10 +1,10 @@
 package org.deepdive.apiserver.security.service;
 
-import static org.deepdive.apiserver.exception.ErrorCode.ALREADY_EXIST_MEMBER;
+import static org.deepdive.apiserver.common.exception.ErrorCode.ALREADY_EXIST_MEMBER;
 
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.deepdive.apiserver.exception.CommonException;
+import org.deepdive.apiserver.common.exception.CommonException;
 import org.deepdive.apiserver.security.dto.request.SignupDto;
 import org.deepdive.apiserver.security.entity.Member;
 import org.deepdive.apiserver.security.repository.MemberRepository;

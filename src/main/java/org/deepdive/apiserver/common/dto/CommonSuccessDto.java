@@ -1,4 +1,4 @@
-package org.deepdive.apiserver.dto.common;
+package org.deepdive.apiserver.common.dto;
 
 import lombok.Builder;
 

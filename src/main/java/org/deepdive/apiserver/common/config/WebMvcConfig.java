@@ -1,4 +1,4 @@
-package org.deepdive.apiserver.config;
+package org.deepdive.apiserver.common.config;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;

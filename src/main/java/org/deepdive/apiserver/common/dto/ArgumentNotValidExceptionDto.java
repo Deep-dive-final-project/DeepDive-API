@@ -1,11 +1,11 @@
-package org.deepdive.apiserver.dto.global;
+package org.deepdive.apiserver.common.dto;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
-import org.deepdive.apiserver.exception.ErrorCode;
+import org.deepdive.apiserver.common.exception.ErrorCode;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 

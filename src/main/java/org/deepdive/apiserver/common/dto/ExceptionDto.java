@@ -1,9 +1,9 @@
-package org.deepdive.apiserver.dto.global;
+package org.deepdive.apiserver.common.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import org.antlr.v4.runtime.misc.NotNull;
-import org.deepdive.apiserver.exception.ErrorCode;
+import org.deepdive.apiserver.common.exception.ErrorCode;
 
 @Getter
 @Schema(name = "ExceptionDto", description = "API 예외 발생 시 응답 DTO")

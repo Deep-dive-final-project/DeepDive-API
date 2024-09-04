@@ -1,7 +1,7 @@
 package org.deepdive.apiserver.security.config;
 
 import lombok.RequiredArgsConstructor;
-import org.deepdive.apiserver.config.CorsConfig;
+import org.deepdive.apiserver.common.config.CorsConfig;
 import org.deepdive.apiserver.security.handler.CustomLoginSuccessHandler;
 import org.deepdive.apiserver.security.handler.CustomLoginFailureHandler;
 import org.springframework.context.annotation.Bean;

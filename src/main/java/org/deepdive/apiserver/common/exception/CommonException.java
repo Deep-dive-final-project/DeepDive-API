@@ -1,4 +1,4 @@
-package org.deepdive.apiserver.exception;
+package org.deepdive.apiserver.common.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
