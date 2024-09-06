@@ -47,9 +47,16 @@ public class NoteEntity {
         this.summary = note.getSummary();
     }
 
+    public void update(String title, String content, String summary){
+        this.title = title;
+        this.content = content;
+        this.summary = summary;
+    }
+
     public static Note toNote(NoteEntity entity){
         return Note.builder()
                 .noteId(entity.getNoteId())
+                .member(entity.getMember().toMember())
                 .title(entity.getTitle())
                 .content(entity.getContent())
                 .summary(entity.getSummary())
