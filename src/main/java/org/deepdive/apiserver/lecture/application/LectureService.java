@@ -14,10 +14,10 @@ public class LectureService {
 
     private final LectureRepository lectureRepository;
 
-    public GetLectureResponseDto getLecture(Long lectureId) {
-        Lecture lecture = lectureRepository.findById(lectureId);
-        return GetLectureResponseDto.fromEntity(lecture);
-    }
+//    public GetLectureResponseDto getLecture(Long lectureId) {
+//        Lecture lecture = lectureRepository.findById(lectureId);
+//        return GetLectureResponseDto.fromEntity(lecture);
+//    }
 
     public CommonSuccessDto saveLecture(CreateLectureRequestDto dto) {
         Lecture lecture = lectureRepository.findById(dto.LectureId);

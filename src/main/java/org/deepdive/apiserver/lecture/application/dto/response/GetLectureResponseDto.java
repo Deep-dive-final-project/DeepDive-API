@@ -16,10 +16,10 @@ public record GetLectureResponseDto(
     String platform
 ) {
 
-    public static GetLectureResponseDto fromEntity(Lecture course) {
+//    public static GetLectureResponseDto fromEntity(Lecture course) {
 //        return new LectureResponseDto(course.getCourseId(), course.getTitle(), course.getImageUrl(),
 //            course.getInstructor(), course.getPrice(), course.getRating(), course.getLectureUrl(),
 //            course.getGoals(), course.getTarget(),
 //            course.getPlatform());
-    }
+//    }
 }

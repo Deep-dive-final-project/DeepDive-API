@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class ParseService {
 
-    public List<String> parse(LectureEntity course) {
-        if (course.getGoals() != null) {
-            String[] goals = course.getGoals().split("|");
-        }
-        if (course.getTarget() != null) {
-            String[] targets = course.getTarget().split("|");
-        }
-        return Arrays.stream(strings).toList();
-    }
+//    public List<String> parse(LectureEntity course) {
+//        if (course.getGoals() != null) {
+//            String[] goals = course.getGoals().split("|");
+//        }
+//        if (course.getTarget() != null) {
+//            String[] targets = course.getTarget().split("|");
+//        }
+//        return Arrays.stream(strings).toList();
+//    }
 }
