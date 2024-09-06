@@ -4,7 +4,9 @@ import jakarta.persistence.AttributeConverter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class StringToListConverter implements AttributeConverter<List<String>, String> {
 
     private static final String SPLIT_CHAR = "\\|";
@@ -23,8 +25,15 @@ public class StringToListConverter implements AttributeConverter<List<String>, S
         if (dbData == null || dbData.isEmpty()) {
             return List.of();
         }
-        return Arrays.stream(dbData.split(SPLIT_CHAR))
+        log.debug("[StringToListConverter] db data is {}", dbData);
+        List<String> result = Arrays.stream(dbData.split(SPLIT_CHAR))
             .map(String::trim)
             .collect(Collectors.toList());
+        for (String s : result) {
+            log.debug("{}", s);
+        }
+        return Arrays.stream(dbData.split(SPLIT_CHAR))
+            .map(String::trim)
+            .toList();
     }
 }
