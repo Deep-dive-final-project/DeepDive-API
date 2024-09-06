@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import org.deepdive.apiserver.note.domain.Note;
-import org.deepdive.apiserver.security.entity.Member;
+import org.deepdive.apiserver.security.repository.entity.MemberEntity;
 import org.hibernate.annotations.OnDelete;
 
 import static jakarta.persistence.FetchType.LAZY;
@@ -23,7 +23,7 @@ public class NoteEntity {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
     @OnDelete(action = CASCADE)
-    private Member member;
+    private MemberEntity member;
 
     //Task 테이블
 
@@ -38,8 +38,12 @@ public class NoteEntity {
     @Column(name = "summary")
     private String summary;
 
-    public Note toNote(){
+    public static Note toNote(NoteEntity entity){
         return Note.builder()
+                .noteId(entity.getNoteId())
+                .title(entity.getTitle())
+                .content(entity.getContent())
+                .summary(entity.getSummary())
                 .build();
     }
 }

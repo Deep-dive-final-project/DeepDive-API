@@ -5,7 +5,6 @@ import org.deepdive.apiserver.common.dto.CommonSuccessDto;
 import org.deepdive.apiserver.lecture.application.dto.request.CreateLectureRequestDto;
 import org.deepdive.apiserver.lecture.application.dto.response.GetLectureResponseDto;
 import org.deepdive.apiserver.lecture.application.LectureService;
-import org.deepdive.apiserver.security.resolver.Login;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

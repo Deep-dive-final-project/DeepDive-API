@@ -2,7 +2,7 @@ package org.deepdive.apiserver.common.config;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.deepdive.apiserver.security.resolver.SessionArgumentResolver;
+import org.deepdive.apiserver.security.application.resolver.SessionArgumentResolver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
