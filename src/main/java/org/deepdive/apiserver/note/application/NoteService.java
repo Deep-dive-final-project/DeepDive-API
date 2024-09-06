@@ -9,6 +9,7 @@ import org.deepdive.apiserver.note.application.dto.response.GetNoteResponseDto;
 import org.deepdive.apiserver.note.application.interfaces.NoteRepository;
 import org.deepdive.apiserver.note.domain.Note;
 import org.deepdive.apiserver.security.application.MemberService;
+import org.deepdive.apiserver.security.domain.Member;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,8 +37,8 @@ public class NoteService {
 
     @Transactional
     public CommonSuccessDto createNote(Long memberId, CreateNoteRequestDto dto){
-        Note note = Note.createNote(memberService.getMember(memberId),
-                dto.title(), dto.content(), dto.summary());
+        Member member = memberService.getMember(memberId);
+        Note note = Note.createNote(member, dto.title(), dto.content(), dto.summary());
         noteRepository.save(note);
         return CommonSuccessDto.fromEntity(true);
     }

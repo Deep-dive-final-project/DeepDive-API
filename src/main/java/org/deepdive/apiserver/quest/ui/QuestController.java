@@ -5,6 +5,7 @@ import org.deepdive.apiserver.common.dto.ResponseDto;
 import org.deepdive.apiserver.quest.application.QuestService;
 import org.deepdive.apiserver.quest.application.dto.GetQuestDetailResponseDto;
 import org.deepdive.apiserver.quest.application.dto.GetQuestListResponseDto;
+import org.deepdive.apiserver.security.application.resolver.Login;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +19,12 @@ public class QuestController {
     private final QuestService questService;
 
     @GetMapping("")
-    public ResponseDto<GetQuestListResponseDto> getQuests() {
-        return ResponseDto.ok(questService.findAll());
+    public ResponseDto<GetQuestListResponseDto> getQuests(@Login Long memberId) {
+        return ResponseDto.ok(questService.findAll(memberId));
     }
 
     @GetMapping("/{questId}")
-    public ResponseDto<GetQuestDetailResponseDto> getQuest(@PathVariable("questId") Long questId) {
-        return ResponseDto.ok(questService.getQuest(questId));
+    public ResponseDto<GetQuestDetailResponseDto> getQuest(@Login Long memberId, @PathVariable("questId") Long questId) {
+        return ResponseDto.ok(questService.findQuestByMemberId(memberId, questId));
     }
 }

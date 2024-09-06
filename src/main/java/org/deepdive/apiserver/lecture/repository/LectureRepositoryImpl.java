@@ -11,6 +11,7 @@ import org.deepdive.apiserver.lecture.repository.entity.MyLectureEntity;
 import org.deepdive.apiserver.lecture.repository.jpa.JpaLectureCommandRepository;
 import org.deepdive.apiserver.lecture.repository.jpa.JpaLectureQueryRepository;
 import org.deepdive.apiserver.lecture.repository.jpa.JpaMyLectureQueryRepository;
+import org.deepdive.apiserver.security.domain.Member;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -22,8 +23,8 @@ public class LectureRepositoryImpl implements LectureRepository {
     private final JpaMyLectureQueryRepository myLectureQueryRepository;
 
     @Override
-    public List<Lecture> findAllByMemberId(Long memberId) {
-        List<MyLectureEntity> myLectures = myLectureQueryRepository.findAllByMemberId(memberId);
+    public List<Lecture> findAllByMemberId(Member member) {
+        List<MyLectureEntity> myLectures = myLectureQueryRepository.findAllByMemberId(member.getMemberId());
         List<Long> ids = myLectures.stream().map(MyLectureEntity::getLectureId).toList();
         List<LectureEntity> entities = queryRepository.findAllInMyLectureIds(ids);
         return entities.stream().map(LectureEntity::toLecture).toList();

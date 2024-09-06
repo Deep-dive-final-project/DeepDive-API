@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import org.deepdive.apiserver.security.domain.Member;
 
 @Builder
 @AllArgsConstructor
@@ -16,6 +17,8 @@ public class Quest {
 
     @Getter
     private LocalDate createdDate;
+    @Getter
+    private Member member;
 
     public String getName() {
         return questInfo.getName();
