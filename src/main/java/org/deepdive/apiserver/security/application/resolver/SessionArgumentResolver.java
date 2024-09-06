@@ -1,8 +1,8 @@
-package org.deepdive.apiserver.security.resolver;
+package org.deepdive.apiserver.security.application.resolver;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.deepdive.apiserver.security.service.CustomUserDetails;
+import org.deepdive.apiserver.security.application.CustomUserDetails;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

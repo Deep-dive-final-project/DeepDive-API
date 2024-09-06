@@ -1,7 +1,6 @@
 package org.deepdive.apiserver.note.application.interfaces;
 
 import org.deepdive.apiserver.note.domain.Note;
-import org.deepdive.apiserver.security.entity.Member;
 
 import java.util.List;
 

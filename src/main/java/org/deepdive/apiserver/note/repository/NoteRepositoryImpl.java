@@ -1,6 +1,7 @@
 package org.deepdive.apiserver.note.repository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.deepdive.apiserver.common.exception.CommonException;
 import org.deepdive.apiserver.common.exception.ErrorCode;
 import org.deepdive.apiserver.note.application.interfaces.NoteRepository;
@@ -13,19 +14,20 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class NoteRepositoryImpl implements NoteRepository{
     private final JpaNoteRepository noteRepository;
 
     @Override
     public List<Note> findNotesByMember(Long memberId) {
-        List<Note> notes = noteRepository.findNotesByMember(memberId);
-        return notes;
+        List<NoteEntity> entities = noteRepository.findNotesByMember(memberId);
+        return entities.stream().map(NoteEntity::toNote).toList();
     }
 
     @Override
     public Note findById(Long noteId) {
         NoteEntity entity = noteRepository.findById(noteId)
                 .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_NOTE));
-        return entity.toNote();
+        return NoteEntity.toNote(entity);
     }
 }
