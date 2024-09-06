@@ -54,4 +54,12 @@ public class NoteService {
         noteRepository.update(note, member);
         return CommonSuccessDto.fromEntity(true);
     }
+
+    @Transactional
+    public CommonSuccessDto deleteNote(Long memberId, Long noteId) {
+        Member member = memberService.getMember(memberId);
+        Note note = noteRepository.findById(noteId);
+        noteRepository.delete(note, member);
+        return CommonSuccessDto.fromEntity(true);
+    }
 }

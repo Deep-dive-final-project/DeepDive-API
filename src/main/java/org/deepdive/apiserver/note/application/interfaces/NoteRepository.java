@@ -14,4 +14,6 @@ public interface NoteRepository {
     void save(Note note);
 
     void update(Note note, Member member);
+
+    void delete(Note note, Member member);
 }

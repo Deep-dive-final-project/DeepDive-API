@@ -47,4 +47,10 @@ public class NoteController {
         noteService.updateNote(memberId, noteId, dto);
         return CommonSuccessDto.fromEntity(true);
     }
+
+    @DeleteMapping("/{note_id}")
+    public CommonSuccessDto deleteNote(@Login Long memberId, @PathVariable("note_id") Long noteId){
+        noteService.deleteNote(memberId, noteId);
+        return CommonSuccessDto.fromEntity(true);
+    }
 }

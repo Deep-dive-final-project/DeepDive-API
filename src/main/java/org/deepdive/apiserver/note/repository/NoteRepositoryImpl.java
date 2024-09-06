@@ -46,4 +46,13 @@ public class NoteRepositoryImpl implements NoteRepository{
         NoteEntity entity = noteRepository.findById(note.getNoteId()).orElseThrow(()-> new CommonException(ErrorCode.NOT_FOUND_NOTE));
         entity.update(note.getTitle(), note.getContent(), note.getSummary());
     }
+
+    @Override
+    public void delete(Note note, Member member) {
+        if(!note.getMember().getMemberId().equals(member.getMemberId())){
+            throw new CommonException(ErrorCode.ACCESS_DENIED_NOTE);
+        }
+        NoteEntity entity = noteRepository.findById(note.getNoteId()).orElseThrow(()-> new CommonException(ErrorCode.NOT_FOUND_NOTE));
+        noteRepository.delete(entity);
+    }
 }
