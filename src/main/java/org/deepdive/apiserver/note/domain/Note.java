@@ -1,14 +1,8 @@
 package org.deepdive.apiserver.note.domain;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
-import org.deepdive.apiserver.security.entity.Member;
-import org.hibernate.annotations.OnDelete;
-
-import static jakarta.persistence.FetchType.LAZY;
-import static org.hibernate.annotations.OnDeleteAction.CASCADE;
+import org.deepdive.apiserver.security.domain.Member;
 
 @Getter
 @Builder

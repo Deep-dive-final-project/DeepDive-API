@@ -21,7 +21,6 @@ import java.util.List;
 public class NoteService {
 
     private final NoteRepository noteRepository;
-    private final MemberService memberService;
 
     public List<GetNoteListResponseDto> getNoteList(Long memberId){
         List<Note> notes = noteRepository.findNotesByMember(memberId);
@@ -36,7 +35,7 @@ public class NoteService {
 
     @Transactional
     public CommonSuccessDto createNote(Long memberId, CreateNoteRequestDto dto){
-        Note note = Note.createNote(memberService.getMember(memberId),
+        Note note = Note.createNote(.getMember(memberId),
                 dto.title(), dto.content(), dto.summary());
         noteRepository.save(note);
         return CommonSuccessDto.fromEntity(true);
