@@ -1,4 +1,4 @@
-package org.deepdive.apiserver.security.entity;
+package org.deepdive.apiserver.security.repository.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,12 +7,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
-import org.deepdive.apiserver.security.dto.request.SignupDto;
+import lombok.NoArgsConstructor;
+import org.deepdive.apiserver.security.domain.Member;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Table(name = "member")
-public class Member {
+public class MemberEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
@@ -30,13 +32,21 @@ public class Member {
     @Column(length = 50, nullable = false)
     private String role;
 
-    public static Member createMember(SignupDto dto) {
-        Member member = new Member();
-        member.email = dto.email();
-        member.name = dto.username();
-        member.password = dto.password();
-        member.role = "ROLE_USER";
+    public MemberEntity(Member member) {
+        this.id = member.getMemberId();
+        this.name = member.getUsername();
+        this.email = member.getEmail();
+        this.password = member.getPassword();
+        this.role = member.getRole();
+    }
 
-        return member;
+    public Member toMember() {
+        return Member.builder()
+            .memberId(id)
+            .username(name)
+            .email(email)
+            .password("{noop}" + password)
+            .role(role)
+            .build();
     }
 }

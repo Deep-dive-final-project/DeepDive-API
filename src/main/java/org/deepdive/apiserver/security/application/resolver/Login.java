@@ -1,4 +1,4 @@
-package org.deepdive.apiserver.security.resolver;
+package org.deepdive.apiserver.security.application.resolver;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

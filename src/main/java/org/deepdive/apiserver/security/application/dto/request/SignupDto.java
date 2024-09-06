@@ -1,4 +1,4 @@
-package org.deepdive.apiserver.security.dto.request;
+package org.deepdive.apiserver.security.application.dto.request;
 
 public record SignupDto(
     String username,

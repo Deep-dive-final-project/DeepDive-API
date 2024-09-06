@@ -1,4 +1,4 @@
-package org.deepdive.apiserver.security.handler;
+package org.deepdive.apiserver.security.application.handler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

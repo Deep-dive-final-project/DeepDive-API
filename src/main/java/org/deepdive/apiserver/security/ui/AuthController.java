@@ -1,9 +1,9 @@
-package org.deepdive.apiserver.security.controller;
+package org.deepdive.apiserver.security.ui;
 
 import lombok.RequiredArgsConstructor;
 import org.deepdive.apiserver.common.dto.CommonSuccessDto;
-import org.deepdive.apiserver.security.dto.request.SignupDto;
-import org.deepdive.apiserver.security.service.AuthService;
+import org.deepdive.apiserver.security.application.dto.request.SignupDto;
+import org.deepdive.apiserver.security.application.AuthService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
