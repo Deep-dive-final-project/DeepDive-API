@@ -8,6 +8,7 @@ import org.deepdive.apiserver.lecture.application.dto.response.GetLectureListRes
 import org.deepdive.apiserver.lecture.application.dto.response.GetLectureResponseDto;
 import org.deepdive.apiserver.lecture.application.interfaces.LectureRepository;
 import org.deepdive.apiserver.lecture.domain.lecture.Lecture;
+import org.deepdive.apiserver.security.application.resolver.Login;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,7 +28,7 @@ public class LectureService {
         return CommonSuccessDto.fromEntity(true);
     }
 
-    public GetLectureListResponseDto getLectures(Long memberId) {
+    public GetLectureListResponseDto getLectures(@Login Long memberId) {
         List<Lecture> lectures = lectureRepository.findAllByMemberId(memberId);
         return GetLectureListResponseDto.from(lectures);
     }
