@@ -3,6 +3,7 @@ package org.deepdive.apiserver.note.repository.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.deepdive.apiserver.note.domain.Note;
 import org.deepdive.apiserver.security.repository.entity.MemberEntity;
 import org.hibernate.annotations.OnDelete;
@@ -12,6 +13,7 @@ import static org.hibernate.annotations.OnDeleteAction.CASCADE;
 
 @Getter
 @Entity
+@NoArgsConstructor
 @Table(name = "note")
 public class NoteEntity {
 
@@ -37,6 +39,13 @@ public class NoteEntity {
 
     @Column(name = "summary")
     private String summary;
+
+    public NoteEntity(Note note){
+        this.member = new MemberEntity(note.getMember());
+        this.title = note.getTitle();
+        this.content = note.getContent();
+        this.summary = note.getSummary();
+    }
 
     public static Note toNote(NoteEntity entity){
         return Note.builder()

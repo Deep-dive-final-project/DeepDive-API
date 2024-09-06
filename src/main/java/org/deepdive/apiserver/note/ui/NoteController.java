@@ -1,8 +1,10 @@
 package org.deepdive.apiserver.note.ui;
 
 import lombok.RequiredArgsConstructor;
+import org.deepdive.apiserver.common.dto.CommonSuccessDto;
 import org.deepdive.apiserver.common.dto.ResponseDto;
 import org.deepdive.apiserver.note.application.NoteService;
+import org.deepdive.apiserver.note.application.dto.request.CreateNoteRequestDto;
 import org.deepdive.apiserver.note.application.dto.response.GetNoteListResponseDto;
 import org.deepdive.apiserver.security.application.resolver.Login;
 import org.deepdive.apiserver.note.application.dto.response.GetNoteResponseDto;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +33,11 @@ public class NoteController {
     @GetMapping("/{note_id}")
     public ResponseDto<GetNoteResponseDto> getNote(@Login Long memberId, @PathVariable("note_id") Long noteId){
         return ResponseDto.ok(noteService.getNote(memberId, noteId));
+    }
+
+    @PostMapping("")
+    public CommonSuccessDto createNote(@Login Long memberId, @RequestBody CreateNoteRequestDto createNoteRequestDto){
+        noteService.createNote(memberId, createNoteRequestDto);
+        return CommonSuccessDto.fromEntity(true);
     }
 }

@@ -9,4 +9,6 @@ public interface NoteRepository {
     List<Note> findNotesByMember(Long memberId);
 
     Note findById(Long noteId);
+
+    void save(Note note);
 }
