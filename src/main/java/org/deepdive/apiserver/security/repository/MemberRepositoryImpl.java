@@ -34,4 +34,11 @@ public class MemberRepositoryImpl implements MemberRepository {
         Optional<MemberEntity> member = memberRepository.findByEmail(email);
         return member.isPresent();
     }
+
+    @Override
+    public Member findById(Long memberId) {
+        MemberEntity entity = memberRepository.findById(memberId)
+            .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_MEMBER));
+        return entity.toMember();
+    }
 }
