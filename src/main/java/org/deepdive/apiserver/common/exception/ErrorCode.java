@@ -20,6 +20,7 @@ public enum ErrorCode {
     NOT_FOUND_LECTURE(40404, HttpStatus.NOT_FOUND, "해당하는 강의가 존재하지 않습니다"),
     NOT_FOUND_NOTE(40405, HttpStatus.NOT_FOUND, "해당하는 강의 노트가 존재하지 않습니다"),
     NOT_FOUND_SECTION(40410, HttpStatus.NOT_FOUND, "해당하는 섹션이 존재하지 않습니다"),
+    NOT_FOUND_QUEST(40411, HttpStatus.NOT_FOUND, "해당하는 퀘스트가 존재하지 않습니다"),
 
     // Invalid Argument Error
     MISSING_REQUEST_PARAMETER(40000, HttpStatus.BAD_REQUEST, "필수 요청 파라미터가 누락되었습니다."),
