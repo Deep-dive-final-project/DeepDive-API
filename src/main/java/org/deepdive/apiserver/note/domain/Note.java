@@ -27,4 +27,10 @@ public class Note {
                 .summary(summary)
                 .build();
     }
+
+    public void updateNote(String title, String content, String summary){
+        this.title = title;
+        this.content = content;
+        this.summary = summary;
+    }
 }

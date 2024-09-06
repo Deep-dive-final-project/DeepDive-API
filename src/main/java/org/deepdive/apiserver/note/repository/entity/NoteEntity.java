@@ -2,7 +2,9 @@ package org.deepdive.apiserver.note.repository.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.deepdive.apiserver.note.domain.Note;
 import org.deepdive.apiserver.security.entity.Member;
 import org.hibernate.annotations.OnDelete;
@@ -12,6 +14,7 @@ import static org.hibernate.annotations.OnDeleteAction.CASCADE;
 
 @Getter
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "note")
 public class NoteEntity {
 
@@ -43,6 +46,12 @@ public class NoteEntity {
         this.title = note.getTitle();
         this.content = note.getContent();
         this.summary = note.getSummary();
+    }
+
+    public void update(String title, String content, String summary){
+        this.title = title;
+        this.content = content;
+        this.summary = summary;
     }
 
     public Note toNote(){

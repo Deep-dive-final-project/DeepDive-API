@@ -12,4 +12,6 @@ public interface NoteRepository {
     Note findById(Long noteId);
 
     void save(Note note);
+
+    void update(Note note, Member member);
 }
