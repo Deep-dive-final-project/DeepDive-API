@@ -1,6 +1,7 @@
 package org.deepdive.apiserver.note.repository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.deepdive.apiserver.note.application.interfaces.NoteRepository;
 import org.deepdive.apiserver.note.domain.Note;
 import org.deepdive.apiserver.note.repository.entity.NoteEntity;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class NoteRepositoryImpl implements NoteRepository{
     private final JpaNoteRepository noteRepository;
 
