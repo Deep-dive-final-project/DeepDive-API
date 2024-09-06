@@ -21,13 +21,13 @@ public class LectureController {
 
     private final LectureService courseService;
 
-    @GetMapping("/{courseId}")
-    public ResponseEntity<GetLectureResponseDto> getCourse(@Login Long userId, @PathVariable("courseId") Long courseId) {
-        return ResponseEntity.ok(courseService.getLecture(courseId));
-    }
+//    @GetMapping("/{courseId}")
+//    public ResponseEntity<GetLectureResponseDto> getCourse(@Login Long userId, @PathVariable("courseId") Long courseId) {
+//        return ResponseEntity.ok(courseService.getLecture(courseId));
+//    }
 
-    @PostMapping
-    public CommonSuccessDto saveLecture(@RequestBody CreateLectureRequestDto dto) {
-        courseService.saveLecture(dto);
-    }
+//    @PostMapping
+//    public CommonSuccessDto saveLecture(@RequestBody CreateLectureRequestDto dto) {
+//        courseService.saveLecture(dto);
+//    }
 }
