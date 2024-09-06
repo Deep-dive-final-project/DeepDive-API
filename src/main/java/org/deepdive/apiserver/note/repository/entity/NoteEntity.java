@@ -38,6 +38,12 @@ public class NoteEntity {
     @Column(name = "summary")
     private String summary;
 
+    public NoteEntity(Note note){
+        this.member = note.getMember();
+        this.title = note.getTitle();
+        this.content = note.getContent();
+        this.summary = note.getSummary();
+    }
 
     public Note toNote(){
         return Note.builder()

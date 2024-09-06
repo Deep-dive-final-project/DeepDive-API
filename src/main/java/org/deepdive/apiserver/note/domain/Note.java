@@ -18,4 +18,13 @@ public class Note {
     private String title;
     private String content;
     private String summary;
+
+    public static Note createNote(Member member, String title, String content, String summary){
+        return Note.builder()
+                .member(member)
+                .title(title)
+                .content(content)
+                .summary(summary)
+                .build();
+    }
 }

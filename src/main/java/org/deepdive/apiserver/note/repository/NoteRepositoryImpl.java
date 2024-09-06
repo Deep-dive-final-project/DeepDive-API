@@ -28,4 +28,10 @@ public class NoteRepositoryImpl implements NoteRepository{
                 .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_NOTE));
         return entity.toNote();
     }
+
+    @Override
+    public void save(Note note) {
+        NoteEntity noteEntity = new NoteEntity(note);
+        noteRepository.save(noteEntity);
+    }
 }
