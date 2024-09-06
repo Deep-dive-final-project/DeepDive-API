@@ -11,8 +11,8 @@ import org.deepdive.apiserver.note.application.dto.response.GetNoteListResponseD
 import org.deepdive.apiserver.note.application.dto.response.GetNoteResponseDto;
 import org.deepdive.apiserver.note.application.interfaces.NoteRepository;
 import org.deepdive.apiserver.note.domain.Note;
-import org.deepdive.apiserver.security.entity.Member;
-import org.deepdive.apiserver.security.service.MemberService;
+import org.deepdive.apiserver.security.application.MemberService;
+import org.deepdive.apiserver.security.domain.Member;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
