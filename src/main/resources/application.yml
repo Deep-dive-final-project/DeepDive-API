@@ -10,7 +10,7 @@ spring:
       namespace: spring:session
   data:
     redis:
-      host: localhost
+      host: my-redis
       password: 1234
       port: 6379
   h2:
@@ -19,7 +19,7 @@ spring:
       path: /h2-console
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/deepdive?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://mysql-container:3306/deepdive?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
     password: 1234
   jpa:
@@ -35,3 +35,4 @@ server:
   servlet:
     session:
       timeout: 3600
+  port: 8080
