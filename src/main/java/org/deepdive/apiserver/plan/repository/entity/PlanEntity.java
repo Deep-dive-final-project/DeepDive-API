@@ -46,8 +46,9 @@ public class PlanEntity {
     @Column(name = "state")
     private String state;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lecture_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private LectureEntity lectureEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -72,6 +73,8 @@ public class PlanEntity {
                 .endDate(endDate)
                 .description(description)
                 .state(state)
+                .member(memberEntity.toMember())
+                .lecture(lectureEntity.toLecture())
                 .build();
     }
 }
