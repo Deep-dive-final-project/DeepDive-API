@@ -7,6 +7,7 @@ import org.deepdive.apiserver.plan.application.interfaces.PlanRepository;
 import org.deepdive.apiserver.plan.domain.Plan;
 import org.deepdive.apiserver.plan.repository.entity.PlanEntity;
 import org.deepdive.apiserver.plan.repository.jpa.JpaPlanRepository;
+import org.deepdive.apiserver.security.application.MemberService;
 import org.deepdive.apiserver.security.application.interfaces.MemberRepository;
 import org.deepdive.apiserver.security.domain.Member;
 import org.deepdive.apiserver.security.repository.entity.MemberEntity;
@@ -17,14 +18,12 @@ import org.springframework.stereotype.Repository;
 public class PlanRepositoryImpl implements PlanRepository {
 
     private final JpaPlanRepository planRepository;
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
 
     @Override
     public List<Plan> findAllByMemberId(Long memberId) {
-        MemberEntity memberEntity = new MemberEntity(memberRepository.findById(memberId));
-        List<PlanEntity> entities = planRepository.findAllByMember(memberEntity);
-        List<Plan> plans = new ArrayList<>();
-        for (PlanEntity entity : entities) plans.add(entity.toPlan());
-        return plans;
+        MemberEntity memberEntity = new MemberEntity(memberService.getMember(memberId));
+        List<PlanEntity> entities = planRepository.findAllByMember(memberEntity.getMemberId());
+        return entities.stream().map(PlanEntity::toPlan).toList();
     }
 }
