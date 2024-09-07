@@ -23,4 +23,8 @@ public class PlanService {
         List<Plan> plans = planRepository.findAllByMemberId(memberId);
         return GetPlansForPlanPageResponseDto.fromEntity(plans);
     }
+
+    public Plan getPlan(Long memberId, Long planId) {
+        return planRepository.findByIdAndMemberId(memberId, planId);
+    }
 }
