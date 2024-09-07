@@ -36,6 +36,13 @@ public class PlanRepositoryImpl implements PlanRepository {
     }
 
     @Override
+    public Plan findByIdAndMemberId(Long memberId, Long planId) {
+        MemberEntity memberEntity = new MemberEntity(memberService.getMember(memberId));
+        return planRepository.findByIdAndMemberId(memberEntity.getMemberId(), planId);
+    }
+
+
+    @Override
     @Transactional
     public void deleteByIdAndMemberId(Long memberId, Long planId) {
         Plan plan = findById(planId);
