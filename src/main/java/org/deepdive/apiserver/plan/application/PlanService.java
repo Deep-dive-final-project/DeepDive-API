@@ -2,7 +2,8 @@ package org.deepdive.apiserver.plan.application;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.deepdive.apiserver.plan.application.dto.response.GetPlansResponseDto;
+import org.deepdive.apiserver.plan.application.dto.response.GetPlansForMainPageResponseDto;
+import org.deepdive.apiserver.plan.application.dto.response.GetPlansForPlanPageResponseDto;
 import org.deepdive.apiserver.plan.application.interfaces.PlanRepository;
 import org.deepdive.apiserver.plan.domain.Plan;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,14 @@ public class PlanService {
 
     private final PlanRepository planRepository;
 
-    public GetPlansResponseDto getPlans(Long memberId) {
+    public GetPlansForMainPageResponseDto getPlansForMainPageResponse(Long memberId) {
         List<Plan> plans = planRepository.findAllByMemberId(memberId);
-        return GetPlansResponseDto.fromEntity(plans);
+        return GetPlansForMainPageResponseDto.fromEntity(plans);
+    }
+
+    public GetPlansForPlanPageResponseDto getPlansForPlanPageResponse(Long memberId) {
+        List<Plan> plans = planRepository.findAllByMemberId(memberId);
+        return GetPlansForPlanPageResponseDto.fromEntity(plans);
     }
 
     public Plan getPlan(Long memberId, Long planId) {
