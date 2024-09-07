@@ -18,7 +18,7 @@ public class MemberEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
-    private Long id;
+    private Long memberId;
 
     @Column(length = 100, nullable = false)
     private String name;
@@ -33,7 +33,7 @@ public class MemberEntity {
     private String role;
 
     public MemberEntity(Member member) {
-        this.id = member.getMemberId();
+        this.memberId = member.getMemberId();
         this.name = member.getUsername();
         this.email = member.getEmail();
         this.password = member.getPassword();
@@ -42,7 +42,7 @@ public class MemberEntity {
 
     public Member toMember() {
         return Member.builder()
-            .memberId(id)
+            .memberId(memberId)
             .username(name)
             .email(email)
             .password("{noop}" + password)
