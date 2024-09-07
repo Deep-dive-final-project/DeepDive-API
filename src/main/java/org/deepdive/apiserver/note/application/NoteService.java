@@ -40,8 +40,8 @@ public class NoteService {
 
     @Transactional
     public CommonSuccessDto createNote(Long memberId, CreateNoteRequestDto dto){
-        Note note = Note.createNote(memberService.getMember(memberId),
-                dto.title(), dto.content(), dto.summary());
+        Member member = memberService.getMember(memberId);
+        Note note = Note.createNote(member, dto.title(), dto.content(), dto.summary());
         noteRepository.save(note);
         return CommonSuccessDto.fromEntity(true);
     }

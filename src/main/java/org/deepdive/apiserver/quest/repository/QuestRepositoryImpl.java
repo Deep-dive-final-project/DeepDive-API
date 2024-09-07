@@ -9,6 +9,7 @@ import org.deepdive.apiserver.quest.application.interfaces.QuestRepository;
 import org.deepdive.apiserver.quest.domain.Quest;
 import org.deepdive.apiserver.quest.repository.entity.QuestEntity;
 import org.deepdive.apiserver.quest.repository.jpa.JpaQuestQueryRepository;
+import org.deepdive.apiserver.security.domain.Member;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -17,14 +18,14 @@ public class QuestRepositoryImpl implements QuestRepository {
 
     private final JpaQuestQueryRepository questQueryRepository;
 
-    public List<Quest> findAll() {
-        List<QuestEntity> entities = questQueryRepository.findAll();
+    public List<Quest> findAll(Member member) {
+        List<QuestEntity> entities = questQueryRepository.findAllByMemberId(member.getMemberId());
         return entities.stream().map(QuestEntity::toQuest).toList();
     }
 
     @Override
-    public Quest findById(Long questId) {
-        QuestEntity entity = questQueryRepository.findById(questId)
+    public Quest findById(Member member, Long questId) {
+        QuestEntity entity = questQueryRepository.findByMemberId(member.getMemberId(), questId)
             .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_QUEST));
         return entity.toQuest();
     }
