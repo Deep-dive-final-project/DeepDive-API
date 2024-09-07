@@ -28,24 +28,17 @@ public class PlanRepositoryImpl implements PlanRepository {
         return planEntities.stream().map(PlanEntity::toPlan).toList();
     }
 
-    @Override
-    public Plan findById(Long planId) {
-        PlanEntity planEntity = planRepository.findById(planId).orElseThrow(() ->
-                new CommonException(ErrorCode.NOT_FOUND_PLAN));
-        return planEntity.toPlan();
-    }
 
     @Override
     public Plan findByIdAndMemberId(Long memberId, Long planId) {
-        MemberEntity memberEntity = new MemberEntity(memberService.getMember(memberId));
-        return planRepository.findByIdAndMemberId(memberEntity.getMemberId(), planId);
+        return planRepository.findByIdAndMemberId(memberId, planId).toPlan();
     }
 
 
     @Override
     @Transactional
     public void deleteByIdAndMemberId(Long memberId, Long planId) {
-        Plan plan = findById(planId);
+        Plan plan = findByIdAndMemberId(memberId,planId);
         Member member = memberService.getMember(memberId);
         if(!plan.getMember().getMemberId().equals(member.getMemberId())) {
             throw new CommonException(ErrorCode.INVALID_ARGUMENT);

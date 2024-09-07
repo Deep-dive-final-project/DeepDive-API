@@ -8,7 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.sql.Timestamp;
 import lombok.AccessLevel;
@@ -63,6 +62,8 @@ public class PlanEntity {
         endDate = plan.getEndDate();
         description = plan.getDescription();
         state = plan.getState();
+        memberEntity = new MemberEntity(plan.getMember());
+        lectureEntity = new LectureEntity(plan.getLecture());
     }
 
     public Plan toPlan(){

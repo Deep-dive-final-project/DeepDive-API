@@ -3,6 +3,7 @@ package org.deepdive.apiserver.plan.application;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.deepdive.apiserver.common.dto.CommonSuccessDto;
+import org.deepdive.apiserver.plan.application.dto.response.GetPlanDetailResponseDto;
 import org.deepdive.apiserver.plan.application.dto.response.GetPlansForMainPageResponseDto;
 import org.deepdive.apiserver.plan.application.dto.response.GetPlansForPlanPageResponseDto;
 import org.deepdive.apiserver.plan.application.interfaces.PlanRepository;
@@ -25,8 +26,9 @@ public class PlanService {
         return GetPlansForPlanPageResponseDto.fromEntity(plans);
     }
 
-    public Plan getPlan(Long memberId, Long planId) {
-        return planRepository.findByIdAndMemberId(memberId, planId);
+    public GetPlanDetailResponseDto getPlanDetail(Long memberId, Long planId) {
+        Plan plan = planRepository.findByIdAndMemberId(memberId, planId);
+        return GetPlanDetailResponseDto.fromEntity(plan);
     }
 
     public CommonSuccessDto deletePlan(Long memberId, Long planId) {
