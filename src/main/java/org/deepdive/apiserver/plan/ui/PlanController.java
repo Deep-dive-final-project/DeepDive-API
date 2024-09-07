@@ -4,7 +4,7 @@ import org.deepdive.apiserver.plan.application.dto.response.GetPlanResponseDto;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.deepdive.apiserver.plan.application.PlanService;
-import org.deepdive.apiserver.security.resolver.Login;
+import org.deepdive.apiserver.security.application.resolver.Login;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

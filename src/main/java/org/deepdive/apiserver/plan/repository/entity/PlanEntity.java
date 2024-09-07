@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.sql.Timestamp;
@@ -14,8 +15,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.deepdive.apiserver.lecture.repository.entity.LectureEntity;
-import org.deepdive.apiserver.member.repository.entity.MemberEntity;
 import org.deepdive.apiserver.plan.domain.Plan;
+import org.deepdive.apiserver.security.repository.entity.MemberEntity;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -49,7 +50,7 @@ public class PlanEntity {
     @JoinColumn(name = "lecture_id")
     private LectureEntity lectureEntity;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private MemberEntity memberEntity;
