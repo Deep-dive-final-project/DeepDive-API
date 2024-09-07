@@ -1,12 +1,14 @@
 package org.deepdive.apiserver.plan.ui;
 
 import lombok.RequiredArgsConstructor;
+import org.deepdive.apiserver.common.dto.CommonSuccessDto;
 import org.deepdive.apiserver.plan.application.PlanService;
+import org.deepdive.apiserver.plan.application.dto.response.GetPlanDetailResponseDto;
 import org.deepdive.apiserver.plan.application.dto.response.GetPlansForMainPageResponseDto;
 import org.deepdive.apiserver.plan.application.dto.response.GetPlansForPlanPageResponseDto;
-import org.deepdive.apiserver.plan.domain.Plan;
 import org.deepdive.apiserver.security.application.resolver.Login;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +32,12 @@ public class PlanController {
     }
 
     @GetMapping("/{planId}")
-    public ResponseEntity<Plan> getPlanDetails(@Login Long userId,
-                                               @PathVariable(name = "planId") Long planId){
-        return ResponseEntity.ok(planService.getPlan(userId, planId));
+    public ResponseEntity<GetPlanDetailResponseDto> getPlanDetails(@Login Long userId,
+                                                                   @PathVariable(name = "planId") Long planId){
+        return ResponseEntity.ok(planService.getPlanDetail(userId, planId));
+    }
+    @DeleteMapping("/{planId}")
+    public CommonSuccessDto deletePlan(@Login Long userId, @PathVariable Long planId){
+        return planService.deletePlan(userId,planId);
     }
 }

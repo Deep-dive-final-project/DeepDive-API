@@ -8,7 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.sql.Timestamp;
 import lombok.AccessLevel;
@@ -46,8 +45,9 @@ public class PlanEntity {
     @Column(name = "state")
     private String state;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lecture_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private LectureEntity lectureEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -62,6 +62,8 @@ public class PlanEntity {
         endDate = plan.getEndDate();
         description = plan.getDescription();
         state = plan.getState();
+        memberEntity = new MemberEntity(plan.getMember());
+        lectureEntity = new LectureEntity(plan.getLecture());
     }
 
     public Plan toPlan(){
@@ -72,6 +74,8 @@ public class PlanEntity {
                 .endDate(endDate)
                 .description(description)
                 .state(state)
+                .member(memberEntity.toMember())
+                .lecture(lectureEntity.toLecture())
                 .build();
     }
 }

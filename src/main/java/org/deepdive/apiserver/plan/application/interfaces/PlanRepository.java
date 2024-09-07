@@ -8,4 +8,6 @@ public interface PlanRepository {
     List<Plan> findAllByMemberId(Long memeberId);
 
     Plan findByIdAndMemberId(Long memberId, Long planId);
+
+    void deleteByIdAndMemberId(Long member, Long plan);
 }
