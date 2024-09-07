@@ -8,28 +8,39 @@ import org.deepdive.apiserver.lecture.application.dto.response.GetLectureListRes
 import org.deepdive.apiserver.lecture.application.dto.response.GetLectureResponseDto;
 import org.deepdive.apiserver.lecture.application.interfaces.LectureRepository;
 import org.deepdive.apiserver.lecture.domain.lecture.Lecture;
+import org.deepdive.apiserver.security.application.MemberService;
 import org.deepdive.apiserver.security.application.resolver.Login;
+import org.deepdive.apiserver.security.domain.Member;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class LectureService {
 
     private final LectureRepository lectureRepository;
+    private final MemberService memberService;
 
-    public GetLectureResponseDto getLecture(Long lectureId) {
-        Lecture lecture = lectureRepository.findById(lectureId);
+    public Lecture getLecture(Long lectureId) {
+        return lectureRepository.findById(lectureId);
+    }
+
+    public GetLectureResponseDto findLecture(Long lectureId) {
+        Lecture lecture = getLecture(lectureId);
         return new GetLectureResponseDto(lecture.getLectureId(), lecture.getTitle());
     }
 
+    @Transactional
     public CommonSuccessDto saveLecture(CreateLectureRequestDto dto) {
-        Lecture lecture = lectureRepository.findById(dto.LectureId);
+        Lecture lecture = getLecture(dto.LectureId);
         lectureRepository.save(lecture);
         return CommonSuccessDto.fromEntity(true);
     }
 
-    public GetLectureListResponseDto getLectures(@Login Long memberId) {
-        List<Lecture> lectures = lectureRepository.findAllByMemberId(memberId);
+    public GetLectureListResponseDto findLectures(@Login Long memberId) {
+        Member member = memberService.getMember(memberId);
+        List<Lecture> lectures = lectureRepository.findAllByMemberId(member);
         return GetLectureListResponseDto.from(lectures);
     }
 }

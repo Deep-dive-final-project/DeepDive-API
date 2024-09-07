@@ -20,12 +20,12 @@ public class LectureController {
 
     @GetMapping("")
     public ResponseEntity<GetLectureListResponseDto> getLectures(@Login Long userId) {
-        return ResponseEntity.ok(courseService.getLectures(userId));
+        return ResponseEntity.ok(courseService.findLectures(userId));
     }
 
     @GetMapping("/{lectureId}")
     public ResponseEntity<GetLectureResponseDto> getLecture(@Login Long userId,
         @PathVariable("lectureId") Long lectureId) {
-        return ResponseEntity.ok(courseService.getLecture(lectureId));
+        return ResponseEntity.ok(courseService.findLecture(lectureId));
     }
 }
