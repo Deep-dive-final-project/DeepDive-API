@@ -37,10 +37,10 @@ public class NoteEntity {
     private String title;
 
     @NotNull
-    @Column(name = "content")
+    @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "summary")
+    @Column(name = "summary", columnDefinition = "TEXT")
     private String summary;
 
     public NoteEntity(Note note){
