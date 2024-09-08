@@ -53,7 +53,6 @@ public class TaskEntity {
     @Column(name = "complete_date")
     private Timestamp completeDate;
 
-
     public TaskEntity(Task task) {
         taskId = task.getTaskId();
         planEntity = new PlanEntity(task.getPlan());

@@ -8,17 +8,23 @@ import org.deepdive.apiserver.plan.application.interfaces.PlanRepository;
 import org.deepdive.apiserver.plan.domain.Plan;
 import org.deepdive.apiserver.plan.repository.entity.PlanEntity;
 import org.deepdive.apiserver.plan.repository.jpa.JpaPlanRepository;
+import org.deepdive.apiserver.security.application.MemberService;
+import org.deepdive.apiserver.security.domain.Member;
+import org.deepdive.apiserver.security.repository.entity.MemberEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @RequiredArgsConstructor
 public class PlanRepositoryImpl implements PlanRepository {
 
     private final JpaPlanRepository planRepository;
+    private final MemberService memberService;
 
     @Override
     public List<Plan> findAllByMemberId(Long memberId) {
-        List<PlanEntity> planEntities = planRepository.findAllByMember(memberId);
+        MemberEntity memberEntity = new MemberEntity(memberService.getMember(memberId));
+        List<PlanEntity> planEntities = planRepository.findAllByMember(memberEntity.getMemberId());
         return planEntities.stream().map(PlanEntity::toPlan).toList();
     }
 
@@ -28,21 +34,18 @@ public class PlanRepositoryImpl implements PlanRepository {
         return planRepository.findByIdAndMemberId(memberId, planId).toPlan();
     }
 
+
     @Override
+    @Transactional
     public void deleteByIdAndMemberId(Long memberId, Long planId) {
         Plan plan = findByIdAndMemberId(memberId,planId);
-        if(!plan.getMember().getMemberId().equals(memberId)) {
+        Member member = memberService.getMember(memberId);
+        if(!plan.getMember().getMemberId().equals(member.getMemberId())) {
             throw new CommonException(ErrorCode.INVALID_ARGUMENT);
         }
         planRepository.delete(new PlanEntity(plan));
     }
 
-    @Override
-    public Plan save(Plan plan) {
-        PlanEntity planEntity = new PlanEntity(plan);
-        planRepository.save(planEntity);
-        return planEntity.toPlan();
-    }
     @Override
     public Plan findById(Long planId) {
         PlanEntity entity = planRepository.findById(planId).orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_PLAN));
