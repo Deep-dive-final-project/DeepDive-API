@@ -76,4 +76,8 @@ public class TaskEntity {
                 .completeDate(completeDate)
                 .build();
     }
+
+    public void updateState(String state){
+        this.state = state;
+    }
 }

@@ -35,4 +35,13 @@ public class TaskRepositoryImpl implements TaskRepository {
 
         return entities.stream().map(TaskEntity::toTask).toList();
     }
+
+    @Override
+    public void update(Long taskId, String state, Long memberId) {
+        TaskEntity taskEntity = taskRepository.findById(taskId).orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_TASK));
+        if(!taskEntity.getMemberEntity().getMemberId().equals(memberId)){
+            throw new CommonException(ErrorCode.ACCESS_DENIED_TASK);
+        }
+        taskEntity.updateState(state);
+    }
 }
