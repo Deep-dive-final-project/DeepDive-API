@@ -28,4 +28,11 @@ public class TaskRepositoryImpl implements TaskRepository {
         List<TaskEntity> taskEntityList = taskList.stream().map(TaskEntity::new).toList();
         taskRepository.saveAll(taskEntityList);
     }
+
+    @Override
+    public List<Task> findAllByPlan(Long planId) {
+        List<TaskEntity> entities = taskRepository.findByPlanId(planId);
+
+        return entities.stream().map(TaskEntity::toTask).toList();
+    }
 }

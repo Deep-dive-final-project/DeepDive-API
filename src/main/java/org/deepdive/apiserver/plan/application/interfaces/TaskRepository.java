@@ -9,4 +9,6 @@ public interface TaskRepository {
     Task findById(Long taskId);
 
     void saveAll(List<Task> taskList);
+
+    List<Task> findAllByPlan(Long planId);
 }

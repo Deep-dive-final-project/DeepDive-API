@@ -43,4 +43,11 @@ public class PlanRepositoryImpl implements PlanRepository {
         planRepository.save(planEntity);
         return planEntity.toPlan();
     }
+    @Override
+    public Plan findById(Long planId) {
+        PlanEntity entity = planRepository.findById(planId).orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_PLAN));
+        return entity.toPlan();
+    }
+
+
 }

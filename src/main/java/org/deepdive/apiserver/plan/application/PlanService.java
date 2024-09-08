@@ -74,4 +74,8 @@ public class PlanService {
 
         return new CommonSuccessDto(true);
     }
+
+    public Plan getPlan(Long planId){
+        return planRepository.findById(planId);
+    }
 }
