@@ -46,5 +46,11 @@ public class PlanRepositoryImpl implements PlanRepository {
         planRepository.delete(new PlanEntity(plan));
     }
 
+    @Override
+    public Plan findById(Long planId) {
+        PlanEntity entity = planRepository.findById(planId).orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_PLAN));
+        return entity.toPlan();
+    }
+
 
 }

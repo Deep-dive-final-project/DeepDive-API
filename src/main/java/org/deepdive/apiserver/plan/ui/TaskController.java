@@ -21,6 +21,6 @@ public class TaskController {
 
     @GetMapping("/{plan_id}")
     public ResponseEntity<List<GetTaskListResponseDto>> getTaskList(@Login Long memberId, @PathVariable("plan_id") Long plan_id){
-        return ResponseEntity.ok(taskService.getTaskList(plan_id));
+        return ResponseEntity.ok(taskService.getTaskList(plan_id, memberId));
     }
 }

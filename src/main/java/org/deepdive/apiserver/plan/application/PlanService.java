@@ -35,4 +35,8 @@ public class PlanService {
         planRepository.deleteByIdAndMemberId(memberId,planId);
         return CommonSuccessDto.fromEntity(true);
     }
+
+    public Plan getPlan(Long planId){
+        return planRepository.findById(planId);
+    }
 }
