@@ -1,5 +1,6 @@
 package org.deepdive.apiserver.plan.application;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.deepdive.apiserver.common.exception.CommonException;
 import org.deepdive.apiserver.common.exception.ErrorCode;
@@ -8,11 +9,8 @@ import org.deepdive.apiserver.plan.application.interfaces.TaskRepository;
 import org.deepdive.apiserver.plan.domain.Plan;
 import org.deepdive.apiserver.plan.domain.Task;
 import org.deepdive.apiserver.security.application.MemberService;
-import org.deepdive.apiserver.security.domain.Member;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +23,11 @@ public class TaskService {
 
     public Task findTask(Long taskId){
         return taskRepository.findById(taskId);
+    }
+
+    @Transactional
+    public void saveAll(List<Task> taskList) {
+        taskRepository.saveAll(taskList);
     }
 
     public List<GetTaskListResponseDto> getTaskList(Long planId, Long memberId){

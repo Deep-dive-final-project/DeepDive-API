@@ -5,7 +5,9 @@ import org.deepdive.apiserver.plan.domain.Plan;
 
 public interface PlanRepository {
 
-    List<Plan> findAllByMemberId(Long memeberId);
+    List<Plan> findAllByMemberId(Long memberId);
+
+    Plan save(Plan plan);
 
     Plan findByIdAndMemberId(Long memberId, Long planId);
 

@@ -17,4 +17,14 @@ public class Task {
     private String title;
     private String state;
     private Timestamp completeDate;
+
+    public static Task createTask(Plan plan, Section section, Member member, String title) {
+        return Task.builder()
+                .plan(plan)
+                .section(section)
+                .member(member)
+                .title(title)
+                .state("PENDING")
+                .build();
+    }
 }

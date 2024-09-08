@@ -18,4 +18,17 @@ public class Plan {
     private String state;
     private Member member;
     private Lecture lecture;
+
+    public static Plan createPlan(String title, Timestamp startDate, Timestamp endDate,
+                                  String description, Member member, Lecture lecture) {
+        return Plan.builder()
+                .title(title)
+                .startDate(startDate)
+                .endDate(endDate)
+                .description(description)
+                .member(member)
+                .lecture(lecture)
+                .state("PENDING")
+                .build();
+    }
 }
