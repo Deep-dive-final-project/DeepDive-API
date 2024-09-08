@@ -11,6 +11,8 @@ import org.deepdive.apiserver.note.application.dto.response.GetNoteListResponseD
 import org.deepdive.apiserver.note.application.dto.response.GetNoteResponseDto;
 import org.deepdive.apiserver.note.application.interfaces.NoteRepository;
 import org.deepdive.apiserver.note.domain.Note;
+import org.deepdive.apiserver.plan.application.TaskService;
+import org.deepdive.apiserver.plan.domain.Task;
 import org.deepdive.apiserver.security.application.MemberService;
 import org.deepdive.apiserver.security.domain.Member;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,7 @@ public class NoteService {
 
     private final NoteRepository noteRepository;
     private final MemberService memberService;
+    private final TaskService taskService;
 
     public List<GetNoteListResponseDto> getNoteList(Long memberId){
         List<Note> notes = noteRepository.findNotesByMember(memberId);
@@ -41,7 +44,8 @@ public class NoteService {
     @Transactional
     public CommonSuccessDto createNote(Long memberId, CreateNoteRequestDto dto){
         Member member = memberService.getMember(memberId);
-        Note note = Note.createNote(member, dto.title(), dto.content(), dto.summary());
+        Task task = taskService.findTask(dto.task_id());
+        Note note = Note.createNote(member, task, dto.title(), dto.content(), dto.summary());
         noteRepository.save(note);
         return CommonSuccessDto.fromEntity(true);
     }

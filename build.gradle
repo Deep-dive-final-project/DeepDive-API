@@ -40,6 +40,37 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 }
 
+def generated = 'src/main/generated'
+
+sourceSets {
+    main.java.srcDir generated
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    querydsl.extendsFrom compileClasspath
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs.remove('parameters')
+}
+
+
+clean {
+    delete file('src/main/generated')
+}
+
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+bootJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    mainClass = 'org.deepdive.apiserver.ApiServerApplication'
+}
+
+jar {
+    enabled = false
 }

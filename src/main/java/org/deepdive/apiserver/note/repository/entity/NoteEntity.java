@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.deepdive.apiserver.note.domain.Note;
+import org.deepdive.apiserver.plan.repository.entity.TaskEntity;
 import org.deepdive.apiserver.security.repository.entity.MemberEntity;
 import org.hibernate.annotations.OnDelete;
 
@@ -27,7 +28,9 @@ public class NoteEntity {
     @OnDelete(action = CASCADE)
     private MemberEntity member;
 
-    //Task 테이블
+    @OneToOne
+    @JoinColumn(name = "task_id")
+    private TaskEntity task;
 
     @NotNull
     @Column(name = "title")
