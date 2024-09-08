@@ -1,5 +1,6 @@
 package org.deepdive.apiserver.plan.application;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.deepdive.apiserver.plan.application.interfaces.TaskRepository;
 import org.deepdive.apiserver.plan.domain.Task;
@@ -15,5 +16,10 @@ public class TaskService {
 
     public Task findTask(Long taskId){
         return taskRepository.findById(taskId);
+    }
+
+    @Transactional
+    public void saveAll(List<Task> taskList) {
+        taskRepository.saveAll(taskList);
     }
 }

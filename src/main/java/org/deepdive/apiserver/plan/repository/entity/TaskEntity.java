@@ -1,5 +1,6 @@
 package org.deepdive.apiserver.plan.repository.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -52,6 +53,7 @@ public class TaskEntity {
 
     @Column(name = "complete_date")
     private Timestamp completeDate;
+
 
     public TaskEntity(Task task) {
         taskId = task.getTaskId();

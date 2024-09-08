@@ -1,5 +1,6 @@
 package org.deepdive.apiserver.plan.repository;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.deepdive.apiserver.common.exception.CommonException;
 import org.deepdive.apiserver.common.exception.ErrorCode;
@@ -20,5 +21,11 @@ public class TaskRepositoryImpl implements TaskRepository {
         TaskEntity entity = taskRepository.findById(taskId).orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_TASK));
 
         return entity.toTask();
+    }
+
+    @Override
+    public void saveAll(List<Task> taskList) {
+        List<TaskEntity> taskEntityList = taskList.stream().map(TaskEntity::new).toList();
+        taskRepository.saveAll(taskEntityList);
     }
 }
