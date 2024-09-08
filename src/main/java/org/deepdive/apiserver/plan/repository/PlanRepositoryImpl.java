@@ -1,6 +1,5 @@
 package org.deepdive.apiserver.plan.repository;
 
-import jakarta.persistence.EntityManager;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.deepdive.apiserver.common.exception.CommonException;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Repository;
 public class PlanRepositoryImpl implements PlanRepository {
 
     private final JpaPlanRepository planRepository;
-    private final EntityManager entityManager;
 
     @Override
     public List<Plan> findAllByMemberId(Long memberId) {

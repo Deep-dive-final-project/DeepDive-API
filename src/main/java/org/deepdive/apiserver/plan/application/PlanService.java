@@ -1,6 +1,5 @@
 package org.deepdive.apiserver.plan.application;
 
-import jakarta.persistence.EntityManager;
 import java.sql.Timestamp;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +29,6 @@ public class PlanService {
     private final LectureService lectureService;
     private final SectionService sectionService;
     private final TaskService taskService;
-    private final EntityManager entityManager;
 
     public GetPlansForMainPageResponseDto getPlansForMainPageResponse(Long memberId) {
         List<Plan> plans = planRepository.findAllByMemberId(memberId);
