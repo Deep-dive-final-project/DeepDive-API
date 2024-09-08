@@ -12,7 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.deepdive.apiserver.common.repository.entity.BaseTimeEntity;
@@ -56,7 +55,7 @@ public class QuestEntity extends BaseTimeEntity {
             .questInfo(new QuestInfo(info.getName(), info.getContent(), info.getAnswer(),
                 info.getFeedback()))
             .state(new QuestState(state.getState()))
-            .createdDate(LocalDate.from(getCreatedDate()))
+            .createdDate(getCreatedDate())
             .member(member.toMember())
             .build();
     }

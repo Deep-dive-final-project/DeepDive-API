@@ -1,14 +1,14 @@
 package org.deepdive.apiserver.quest.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
 public record GetQuestDetailResponseDto(String name, String content, String answer, String feedback,
                                   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-                                  LocalDate createdDate) {
+                                  Timestamp createdDate) {
 
     public GetQuestDetailResponseDto(String name, String content, String answer, String feedback,
-        LocalDate createdDate) {
+        Timestamp createdDate) {
         this.name = name;
         this.content = content;
         this.answer = answer;
