@@ -4,6 +4,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.deepdive.apiserver.common.exception.CommonException;
 import org.deepdive.apiserver.common.exception.ErrorCode;
+import org.deepdive.apiserver.plan.application.dto.request.UpdateTaskRequestDto;
 import org.deepdive.apiserver.plan.application.dto.response.GetTaskListResponseDto;
 import org.deepdive.apiserver.plan.application.interfaces.TaskRepository;
 import org.deepdive.apiserver.plan.domain.Task;
@@ -33,5 +34,12 @@ public class TaskService {
                 throw new CommonException(ErrorCode.ACCESS_DENIED_PLAN);            }
         }
         return tasks.stream().map(GetTaskListResponseDto::fromEntity).toList();
+    }
+
+    @Transactional
+    public void updateTaskState(Long memberId, UpdateTaskRequestDto updateTaskRequestDto) {
+        Long taskId = updateTaskRequestDto.taskId();
+        String state = updateTaskRequestDto.state();
+        taskRepository.update(taskId,state,memberId);
     }
 }

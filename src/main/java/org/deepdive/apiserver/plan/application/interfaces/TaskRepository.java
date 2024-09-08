@@ -11,4 +11,6 @@ public interface TaskRepository {
     void saveAll(List<Task> taskList);
 
     List<Task> findAllByPlan(Long planId);
+
+    void update(Long taskId, String state, Long memberId);
 }
