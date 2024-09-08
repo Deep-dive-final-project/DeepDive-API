@@ -2,6 +2,7 @@ package org.deepdive.apiserver.plan.repository.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,10 +19,13 @@ import org.deepdive.apiserver.plan.domain.Plan;
 import org.deepdive.apiserver.security.repository.entity.MemberEntity;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
 @Entity
 @Table(name = "plan")
+@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PlanEntity {
 
@@ -54,6 +58,9 @@ public class PlanEntity {
     @JoinColumn(name = "member_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private MemberEntity memberEntity;
+
+    @LastModifiedDate
+    private Timestamp modifiedDate;
 
     public PlanEntity(Plan plan) {
         planId = plan.getPlanId();

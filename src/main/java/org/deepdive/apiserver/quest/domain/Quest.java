@@ -1,6 +1,6 @@
 package org.deepdive.apiserver.quest.domain;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +16,7 @@ public class Quest {
     private QuestState state;
 
     @Getter
-    private LocalDate createdDate;
+    private Timestamp createdDate;
     @Getter
     private Member member;
 
