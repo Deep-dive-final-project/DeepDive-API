@@ -79,5 +79,8 @@ public class TaskEntity {
 
     public void updateState(String state){
         this.state = state;
+        if(state.equals("FINISHED")){
+            completeDate = new Timestamp(System.currentTimeMillis());
+        }
     }
 }
