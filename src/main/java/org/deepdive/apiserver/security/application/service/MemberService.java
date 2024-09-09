@@ -1,4 +1,4 @@
-package org.deepdive.apiserver.security.application;
+package org.deepdive.apiserver.security.application.service;
 
 import lombok.RequiredArgsConstructor;
 import org.deepdive.apiserver.security.application.interfaces.MemberRepository;

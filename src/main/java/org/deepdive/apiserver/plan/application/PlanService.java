@@ -15,7 +15,7 @@ import org.deepdive.apiserver.plan.application.dto.response.GetPlansForPlanPageR
 import org.deepdive.apiserver.plan.application.interfaces.PlanRepository;
 import org.deepdive.apiserver.plan.domain.Plan;
 import org.deepdive.apiserver.plan.domain.Task;
-import org.deepdive.apiserver.security.application.MemberService;
+import org.deepdive.apiserver.security.application.service.MemberService;
 import org.deepdive.apiserver.security.domain.Member;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

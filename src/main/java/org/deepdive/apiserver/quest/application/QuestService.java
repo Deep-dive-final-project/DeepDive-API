@@ -6,7 +6,7 @@ import org.deepdive.apiserver.quest.application.dto.GetQuestDetailResponseDto;
 import org.deepdive.apiserver.quest.application.dto.GetQuestListResponseDto;
 import org.deepdive.apiserver.quest.application.interfaces.QuestRepository;
 import org.deepdive.apiserver.quest.domain.Quest;
-import org.deepdive.apiserver.security.application.MemberService;
+import org.deepdive.apiserver.security.application.service.MemberService;
 import org.deepdive.apiserver.security.domain.Member;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
