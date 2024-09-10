@@ -7,7 +7,7 @@ import org.deepdive.apiserver.common.dto.ResponseDto;
 import org.deepdive.apiserver.note.application.NoteService;
 import org.deepdive.apiserver.note.application.dto.request.CreateNoteRequestDto;
 import org.deepdive.apiserver.note.application.dto.request.UpdateNoteRequestDto;
-import org.deepdive.apiserver.note.application.dto.response.GetLatestNoteListResponseDto;
+import org.deepdive.apiserver.note.application.dto.response.GetLatestNoteResponseDto;
 import org.deepdive.apiserver.note.application.dto.response.GetNoteListResponseDto;
 import org.deepdive.apiserver.note.application.dto.response.GetNoteResponseDto;
 import org.deepdive.apiserver.security.application.resolver.Login;
@@ -58,7 +58,7 @@ public class NoteController {
     }
 
     @GetMapping("/latest")
-    public ResponseDto<GetLatestNoteListResponseDto> getLatestNote(@Login Long memberId){
+    public ResponseDto<List<GetLatestNoteResponseDto>> getLatestNote(@Login Long memberId){
         return ResponseDto.ok(noteService.getLatestNoteList(memberId));
     }
 }
