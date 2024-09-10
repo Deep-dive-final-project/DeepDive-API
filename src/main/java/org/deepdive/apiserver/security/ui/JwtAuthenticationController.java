@@ -9,8 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.deepdive.apiserver.common.dto.CommonSuccessDto;
 import org.deepdive.apiserver.common.dto.ResponseDto;
 import org.deepdive.apiserver.security.application.dto.JwtAccessTokenResponseDto;
+import org.deepdive.apiserver.security.application.dto.ReIssueAccessTokenRequestDto;
 import org.deepdive.apiserver.security.application.service.JwtAuthenticationService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,8 +29,9 @@ public class JwtAuthenticationController {
      * refreshToken을 이용해 accessToken 발급
      */
     @PostMapping("/access-reissue")
-    public ResponseDto<JwtAccessTokenResponseDto> reIssueAccessToken(HttpServletRequest request) {
-        String refreshToken = request.getHeader(AUTHORIZATION);
+    public ResponseDto<JwtAccessTokenResponseDto> reIssueAccessToken(
+        @RequestBody ReIssueAccessTokenRequestDto dto) {
+        String refreshToken = dto.refreshToken();
         JwtAccessTokenResponseDto accessToken = jwtAuthenticationService.createAccessToken(refreshToken);
         return ResponseDto.ok(accessToken);
     }
