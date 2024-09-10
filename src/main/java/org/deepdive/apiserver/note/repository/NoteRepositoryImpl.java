@@ -29,8 +29,7 @@ public class NoteRepositoryImpl implements NoteRepository{
 
     @Override
     public List<Note> findLatestNotesByMember(Long memberId) {
-        List<NoteEntity> entities = noteRepository.findLatestNotesByMember(memberId, Timestamp.valueOf(
-                LocalDateTime.now().minusDays(1)));
+        List<NoteEntity> entities = noteRepository.findLatestNotesByMember(memberId);
         return entities.stream().map(NoteEntity::toNote).toList();
     }
 

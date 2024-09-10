@@ -19,8 +19,9 @@ public interface JpaNoteRepository extends JpaRepository<NoteEntity, Long> {
     @Query("select n from NoteEntity n" +
             " join fetch n.member m" +
             " where m.memberId = :memberId"+
-            " and n.task.completeDate > :yesterday")
-    List<NoteEntity> findLatestNotesByMember(@Param("memberId") Long memberId,@Param("yesterday") Timestamp yesterday);
+            " order by n.noteId desc" +
+            " limit 10")
+    List<NoteEntity> findLatestNotesByMember(@Param("memberId") Long memberId);
 
     @Query( "select n from NoteEntity n" +
             " join fetch n.member m " +
