@@ -1,10 +1,10 @@
 package org.deepdive.apiserver.plan.repository.jpa;
 
-import io.lettuce.core.dynamic.annotation.Param;
 import java.util.List;
 import org.deepdive.apiserver.plan.repository.entity.PlanEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface JpaPlanRepository extends JpaRepository<PlanEntity, Long> {
 

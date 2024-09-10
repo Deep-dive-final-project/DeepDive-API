@@ -5,7 +5,7 @@ import org.deepdive.apiserver.common.dto.CommonSuccessDto;
 import org.deepdive.apiserver.plan.application.PlanService;
 import org.deepdive.apiserver.plan.application.dto.request.CreatePlanRequestDto;
 import org.deepdive.apiserver.plan.application.dto.response.GetPlanDetailResponseDto;
-import org.deepdive.apiserver.plan.application.dto.response.GetPlansForMainPageResponseDto;
+import org.deepdive.apiserver.plan.application.dto.response.GetPlanForMainPageResponseDto;
 import org.deepdive.apiserver.plan.application.dto.response.GetPlansForPlanPageResponseDto;
 import org.deepdive.apiserver.security.application.resolver.Login;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/plan")
 @RequiredArgsConstructor
@@ -25,7 +27,7 @@ public class PlanController {
     private final PlanService planService;
 
     @GetMapping("/overview")
-    public ResponseEntity<GetPlansForMainPageResponseDto> getPlansForMainPage(@Login Long userId){
+    public ResponseEntity<List<GetPlanForMainPageResponseDto>> getPlansForMainPage(@Login Long userId){
         return ResponseEntity.ok(planService.getPlansForMainPageResponse(userId));
     }
 
