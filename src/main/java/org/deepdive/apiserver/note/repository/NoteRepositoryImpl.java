@@ -1,5 +1,7 @@
 package org.deepdive.apiserver.note.repository;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.deepdive.apiserver.common.exception.CommonException;
@@ -22,6 +24,13 @@ public class NoteRepositoryImpl implements NoteRepository{
     @Override
     public List<Note> findNotesByMember(Long memberId) {
         List<NoteEntity> entities = noteRepository.findNotesByMember(memberId);
+        return entities.stream().map(NoteEntity::toNote).toList();
+    }
+
+    @Override
+    public List<Note> findLatestNotesByMember(Long memberId) {
+        List<NoteEntity> entities = noteRepository.findLatestNotesByMember(memberId, Timestamp.valueOf(
+                LocalDateTime.now().minusDays(1)));
         return entities.stream().map(NoteEntity::toNote).toList();
     }
 

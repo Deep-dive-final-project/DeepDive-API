@@ -68,7 +68,7 @@ public class NoteService {
     }
 
     public GetLatestNoteListResponseDto getLatestNoteList(Long memberId) {
-        List<Note> notes = noteRepository.findNotesByMember(memberId);
+        List<Note> notes = noteRepository.findLatestNotesByMember(memberId);
         return GetLatestNoteListResponseDto.fromEntity(notes);
     }
 }
