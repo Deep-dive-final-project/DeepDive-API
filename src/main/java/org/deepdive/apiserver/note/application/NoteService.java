@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.deepdive.apiserver.common.dto.CommonSuccessDto;
 import org.deepdive.apiserver.note.application.dto.request.CreateNoteRequestDto;
 import org.deepdive.apiserver.note.application.dto.request.UpdateNoteRequestDto;
+import org.deepdive.apiserver.note.application.dto.response.GetLatestNoteListResponseDto;
+import org.deepdive.apiserver.note.application.dto.response.GetLatestNoteResponseDto;
 import org.deepdive.apiserver.note.application.dto.response.GetNoteListResponseDto;
 import org.deepdive.apiserver.note.application.dto.response.GetNoteResponseDto;
 import org.deepdive.apiserver.note.application.interfaces.NoteRepository;
@@ -63,5 +65,10 @@ public class NoteService {
         Note note = noteRepository.findById(noteId);
         noteRepository.delete(note, member);
         return CommonSuccessDto.fromEntity(true);
+    }
+
+    public GetLatestNoteListResponseDto getLatestNoteList(Long memberId) {
+        List<Note> notes = noteRepository.findNotesByMember(memberId);
+        return GetLatestNoteListResponseDto.fromEntity(notes);
     }
 }
