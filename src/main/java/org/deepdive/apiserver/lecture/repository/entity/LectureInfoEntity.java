@@ -3,6 +3,7 @@ package org.deepdive.apiserver.lecture.repository.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Lob;
 import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,10 +21,12 @@ public class LectureInfoEntity {
     @Column(name = "instructor", length = 100)
     private String instructor;
 
+    @Lob
     @Convert(converter = StringToListConverter.class)
     @Column(name = "goals", columnDefinition = "TEXT")
     private List<String> goals;
 
+    @Lob
     @Convert(converter = StringToListConverter.class)
     @Column(name = "target", columnDefinition = "TEXT")
     private List<String> targets;

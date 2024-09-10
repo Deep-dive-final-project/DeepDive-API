@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface NoteRepository {
 
-    List<Note> findNotesByMember(Long memberId);
+    List<Note> findNotesByMember(Member member);
 
     List<Note> findLatestNotesByMember(Long memberId);
 

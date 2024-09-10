@@ -6,8 +6,8 @@ import org.deepdive.apiserver.common.dto.CommonSuccessDto;
 import org.deepdive.apiserver.note.application.dto.request.CreateNoteRequestDto;
 import org.deepdive.apiserver.note.application.dto.request.UpdateNoteRequestDto;
 import org.deepdive.apiserver.note.application.dto.response.GetLatestNoteListResponseDto;
-import org.deepdive.apiserver.note.application.dto.response.GetLatestNoteResponseDto;
-import org.deepdive.apiserver.note.application.dto.response.GetNoteListResponseDto;
+import org.deepdive.apiserver.note.application.dto.response.GetNoteTitleListResponseDto;
+import org.deepdive.apiserver.note.application.dto.response.GetNoteTitleResponseDto;
 import org.deepdive.apiserver.note.application.dto.response.GetNoteResponseDto;
 import org.deepdive.apiserver.note.application.interfaces.NoteRepository;
 import org.deepdive.apiserver.note.domain.Note;
@@ -30,10 +30,10 @@ public class NoteService {
     private final MemberService memberService;
     private final TaskService taskService;
 
-    public List<GetNoteListResponseDto> getNoteList(Long memberId){
-        List<Note> notes = noteRepository.findNotesByMember(memberId);
-
-        return notes.stream().map(GetNoteListResponseDto::fromEntity).toList();
+    public GetNoteTitleListResponseDto getNoteList(Long memberId){
+        Member member = memberService.getMember(memberId);
+        List<Note> notes = noteRepository.findNotesByMember(member);
+        return GetNoteTitleListResponseDto.from(notes);
     }
 
     public GetNoteResponseDto getNote(Long memberId, Long noteId) {

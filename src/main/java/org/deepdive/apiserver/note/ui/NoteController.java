@@ -8,7 +8,8 @@ import org.deepdive.apiserver.note.application.NoteService;
 import org.deepdive.apiserver.note.application.dto.request.CreateNoteRequestDto;
 import org.deepdive.apiserver.note.application.dto.request.UpdateNoteRequestDto;
 import org.deepdive.apiserver.note.application.dto.response.GetLatestNoteListResponseDto;
-import org.deepdive.apiserver.note.application.dto.response.GetNoteListResponseDto;
+import org.deepdive.apiserver.note.application.dto.response.GetNoteTitleListResponseDto;
+import org.deepdive.apiserver.note.application.dto.response.GetNoteTitleResponseDto;
 import org.deepdive.apiserver.note.application.dto.response.GetNoteResponseDto;
 import org.deepdive.apiserver.security.application.resolver.Login;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,8 +30,7 @@ public class NoteController {
     private final NoteService noteService;
 
     @GetMapping("")
-    public ResponseDto<List<GetNoteListResponseDto>> getNoteList(@Login Long memberId){
-
+    public ResponseDto<GetNoteTitleListResponseDto> getNoteList(@Login Long memberId){
         return ResponseDto.ok(noteService.getNoteList(memberId));
     }
 

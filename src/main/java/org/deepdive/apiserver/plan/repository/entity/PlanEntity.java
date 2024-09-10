@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.sql.Timestamp;
@@ -43,6 +44,7 @@ public class PlanEntity {
     @Column(name = "end_date", nullable = false)
     private Timestamp endDate;
 
+    @Lob
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 

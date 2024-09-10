@@ -22,8 +22,8 @@ public class NoteRepositoryImpl implements NoteRepository{
     private final JpaNoteRepository noteRepository;
 
     @Override
-    public List<Note> findNotesByMember(Long memberId) {
-        List<NoteEntity> entities = noteRepository.findNotesByMember(memberId);
+    public List<Note> findNotesByMember(Member member) {
+        List<NoteEntity> entities = noteRepository.findNotesByMember(member.getMemberId());
         return entities.stream().map(NoteEntity::toNote).toList();
     }
 
