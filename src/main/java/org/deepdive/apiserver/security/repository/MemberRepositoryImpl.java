@@ -25,7 +25,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public void save(
-        org.deepdive.apiserver.security.domain.Member member) {
+        Member member) {
         MemberEntity entity = memberRepository.save(new MemberEntity(member));
     }
 

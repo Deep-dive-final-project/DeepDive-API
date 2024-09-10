@@ -22,7 +22,7 @@ public class Member implements Serializable {
         Member member = new Member();
         member.email = email;
         member.username = username;
-        member.password = "{noop}" + password;
+        member.password = password;
         member.role = "ROLE_USER";
 
         return member;

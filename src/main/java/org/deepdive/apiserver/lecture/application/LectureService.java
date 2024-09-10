@@ -8,7 +8,7 @@ import org.deepdive.apiserver.lecture.application.dto.response.GetLectureListRes
 import org.deepdive.apiserver.lecture.application.dto.response.GetLectureResponseDto;
 import org.deepdive.apiserver.lecture.application.interfaces.LectureRepository;
 import org.deepdive.apiserver.lecture.domain.lecture.Lecture;
-import org.deepdive.apiserver.security.application.MemberService;
+import org.deepdive.apiserver.security.application.service.MemberService;
 import org.deepdive.apiserver.security.application.resolver.Login;
 import org.deepdive.apiserver.security.domain.Member;
 import org.springframework.stereotype.Service;

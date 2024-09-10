@@ -1,7 +1,6 @@
 package org.deepdive.apiserver.quest.repository;
 
 import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.deepdive.apiserver.common.exception.CommonException;
 import org.deepdive.apiserver.common.exception.ErrorCode;

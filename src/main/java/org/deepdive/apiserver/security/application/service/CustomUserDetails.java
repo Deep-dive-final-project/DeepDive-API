@@ -1,8 +1,7 @@
-package org.deepdive.apiserver.security.application;
+package org.deepdive.apiserver.security.application.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.deepdive.apiserver.security.domain.Member;
@@ -24,8 +23,6 @@ public class CustomUserDetails implements UserDetails {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(member.getRole()));
         return authorities;
-
-//        return Collections.singletonList(new SimpleGrantedAuthority(this.member.getRole()));
     }
 
     @Override
