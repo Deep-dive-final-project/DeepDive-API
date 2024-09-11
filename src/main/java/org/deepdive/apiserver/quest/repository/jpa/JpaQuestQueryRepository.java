@@ -11,8 +11,9 @@ public interface JpaQuestQueryRepository extends JpaRepository<QuestEntity, Long
 
     @Query("select q from QuestEntity q"
         + " join fetch q.member m"
-        + " where m.memberId=:memberId")
-    List<QuestEntity> findAllByMemberId(@Param("memberId") Long memberId);
+        + " where m.memberId=:memberId"
+        + " and q.state=:state")
+    List<QuestEntity> findAllByMemberId(@Param("memberId") Long memberId, @Param("state") String state);
 
     @Query("select q from QuestEntity q"
         + " join fetch q.member m"

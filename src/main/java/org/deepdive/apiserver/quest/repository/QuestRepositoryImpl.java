@@ -18,7 +18,7 @@ public class QuestRepositoryImpl implements QuestRepository {
     private final JpaQuestQueryRepository questQueryRepository;
 
     public List<Quest> findAll(Member member) {
-        List<QuestEntity> entities = questQueryRepository.findAllByMemberId(member.getMemberId());
+        List<QuestEntity> entities = questQueryRepository.findAllByMemberId(member.getMemberId(), "UNSOLVED");
         return entities.stream().map(QuestEntity::toQuest).toList();
     }
 
