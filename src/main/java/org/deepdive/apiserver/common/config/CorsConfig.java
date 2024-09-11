@@ -14,8 +14,9 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowCredentials(true);
-        corsConfig.setAllowedOrigins(
-            List.of("http://localhost:3000", "http://localhost:8080/*", "http://localhost:8000"));
+//        corsConfig.setAllowedOrigins(
+//            List.of("http://localhost:3000", "http://localhost:8080/*", "http://localhost:8000"));
+        corsConfig.setAllowedOriginPatterns(List.of("*"));
         corsConfig.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
         corsConfig.setAllowedHeaders(List.of("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
