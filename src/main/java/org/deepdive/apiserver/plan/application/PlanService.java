@@ -10,7 +10,7 @@ import org.deepdive.apiserver.lecture.domain.lecture.Lecture;
 import org.deepdive.apiserver.lecture.domain.section.Section;
 import org.deepdive.apiserver.plan.application.dto.request.CreatePlanRequestDto;
 import org.deepdive.apiserver.plan.application.dto.response.GetPlanDetailResponseDto;
-import org.deepdive.apiserver.plan.application.dto.response.GetPlansForMainPageResponseDto;
+import org.deepdive.apiserver.plan.application.dto.response.GetPlanForMainPageResponseDto;
 import org.deepdive.apiserver.plan.application.dto.response.GetPlansForPlanPageResponseDto;
 import org.deepdive.apiserver.plan.application.interfaces.PlanRepository;
 import org.deepdive.apiserver.plan.domain.Plan;
@@ -30,9 +30,9 @@ public class PlanService {
     private final SectionService sectionService;
     private final TaskService taskService;
 
-    public GetPlansForMainPageResponseDto getPlansForMainPageResponse(Long memberId) {
+    public List<GetPlanForMainPageResponseDto> getPlansForMainPageResponse(Long memberId) {
         List<Plan> plans = planRepository.findAllByMemberId(memberId);
-        return GetPlansForMainPageResponseDto.fromEntity(plans);
+        return plans.stream().map(GetPlanForMainPageResponseDto::fromEntity).toList();
     }
 
     public GetPlansForPlanPageResponseDto getPlansForPlanPageResponse(Long memberId) {
