@@ -3,6 +3,7 @@ package org.deepdive.apiserver.quest.repository.jpa;
 import java.util.List;
 import java.util.Optional;
 import org.deepdive.apiserver.quest.repository.entity.QuestEntity;
+import org.deepdive.apiserver.quest.repository.entity.QuestStateEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +14,7 @@ public interface JpaQuestQueryRepository extends JpaRepository<QuestEntity, Long
         + " join fetch q.member m"
         + " where m.memberId=:memberId"
         + " and q.state=:state")
-    List<QuestEntity> findAllByMemberId(@Param("memberId") Long memberId, @Param("state") String state);
+    List<QuestEntity> findAllByMemberId(@Param("memberId") Long memberId, @Param("state") QuestStateEntity state);
 
     @Query("select q from QuestEntity q"
         + " join fetch q.member m"
